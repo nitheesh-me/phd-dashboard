@@ -1,0 +1,47 @@
+[package]
+name = "scholaros"
+version = "0.1.0"
+description = "ScholarOS: local-first CS PhD dashboard"
+authors = ["ScholarOS Team"]
+edition = "2021"
+rust-version = "1.78"
+
+[lib]
+name = "scholaros_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+anyhow = "1"
+chrono = { version = "0.4", features = ["serde"] }
+dashmap = "6"
+futures = "0.3"
+git2 = "0.19"
+notify = "8"
+once_cell = "1"
+parking_lot = "0.12"
+pdf-extract = "0.7"
+regex = "1"
+reqwest = { version = "0.12", default-features = false, features = ["rustls-tls", "http2", "json", "gzip", "brotli", "deflate"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sqlx = { version = "0.8", features = ["runtime-tokio-rustls", "sqlite", "macros", "migrate", "chrono", "uuid", "json"] }
+tantivy = "0.22"
+tauri = { version = "2", features = ["tray-icon", "image-png"] }
+tauri-plugin-global-shortcut = "2"
+tauri-plugin-notification = "2"
+tauri-plugin-opener = "2"
+tauri-plugin-shell = "2"
+tauri-plugin-dialog = "2"
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "time", "fs", "process", "sync"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["fmt", "env-filter"] }
+url = "2"
+uuid = { version = "1", features = ["v4", "serde"] }
+walkdir = "2"
+
+[features]
+default = ["custom-protocol"]
+custom-protocol = ["tauri/custom-protocol"]
